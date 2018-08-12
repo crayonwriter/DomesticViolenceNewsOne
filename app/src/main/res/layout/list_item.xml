@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -48,6 +48,17 @@
             android:maxLines="2"
             android:textSize="12sp"
             tools:text="Text of article, allowed to be up to two lines with ellipses at the end."
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/url"
+            android:text="@string/read_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="12sp"
+            tools:text="More"
             android:ellipsize="end"
             />
 

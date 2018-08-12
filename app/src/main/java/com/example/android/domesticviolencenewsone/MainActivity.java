@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<DVArticles>> {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int DVARTICLES_LOADER_ID = 1;
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&q=%22domestic%20violence%22&api-key=3588df55-9efc-4677-96bc-fecca45a6851"
+    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=all%2C&q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
 
     private TextView emptyState;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ListView dvArticlesListView = (ListView) findViewById(R.id.list);
 
 
-        // Create a new adapter that takes an empty list of earthquakes as input
+        // Create a new adapter that takes an empty list of articles as input
         mAdapter = new DVArticlesAdapter(this, new ArrayList<DVArticles>());
 
         // Set the adapter on the {@link ListView}
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         // Set an item click listener on the ListView, which sends an intent to a web browser
-        // to open a website with more information about the selected earthquake.
+        // to open a website with more information about the selected article.
 
         dvArticlesListView.setEmptyView(emptyState);
 
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri dvArticlesUri = Uri.parse(currentDVArticle.getUrl());
 
-                // Create a new intent to view the earthquake URI
+                // Create a new intent to view the article URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, dvArticlesUri);
 
                 // Send the intent to launch a new activity
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Log.i(LOG_TAG, "TEST: onLoadFinished clears mAdapter");
             mAdapter.clear();
 
-            // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+            // If there is a valid list of {@link DVarticles}, then add them to the adapter's
             // data set. This will trigger the ListView to update.
             if (dvArticles != null && !dvArticles.isEmpty()) {
                 //mAdapter.addAll(dvArticles);
@@ -133,4 +134,4 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             mAdapter.clear();
         }
     }
-}
+
