@@ -23,18 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <TextView
-        android:id="@+id/no_internet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/no_internet"
-        android:layout_centerInParent="true" />
 
-    <TextView
-        android:id="@+id/no_dvarticles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/no_dvarticles" />
+
 
 </RelativeLayout>

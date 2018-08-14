@@ -150,6 +150,7 @@ public final class QueryUtils {
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
+
         try {
 
             // Create a JSONObject from the JSON response string
@@ -157,7 +158,7 @@ public final class QueryUtils {
 
             // Extract the JSONArray associated with the key called "results",
             // which represents a list of articles (or dv articles).
-            JSONArray dvArticlesArray = baseJsonResponse.getJSONArray("results");
+            JSONArray dvArticlesArray = baseJsonResponse.getJSONObject("response").getJSONArray("results");
 
             // For each dv article in the dvArticlesArray, create an {@link DVArticles} object
             for (int i = 0; i < dvArticlesArray.length(); i++) {
@@ -166,17 +167,16 @@ public final class QueryUtils {
                 JSONObject currentDVArticle = dvArticlesArray.getJSONObject(i);
 
                 // For a given article, extract the JSONObject associated with the
-                // key called "results", which represents a list of all results
+                // JSONarray called "results", which represents a list of all results
                 // for that earthquake.
 
-                JSONObject results = currentDVArticle.getJSONObject("Results");
-                JSONObject fields = currentDVArticle.getJSONObject("Fields");
+                // Extract the values for the keys called "sectionName" and "webUrl" and "Fields"
+                String section = currentDVArticle.getString("sectionName");
+                String url = currentDVArticle.getString("webUrl");
 
-                // Extract the values for the keys called "sectionName" and "webUrl"
-                String section = results.getString("sectionName");
-                String url = results.getString("webUrl");
+                JSONObject fields = currentDVArticle.getJSONObject("fields");
 
-                // Extract the value for the keys called "headline", "byline", "firstPublicationDate", and "body"
+                // From the fields JSONobject, extract the value for the keys called "headline", "byline", "firstPublicationDate", and "body"
                 String headline = fields.getString("headline");
 
                 String byline = fields.getString("byline");

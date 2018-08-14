@@ -107,13 +107,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         public android.content.Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle){
             Log.i(LOG_TAG, "TEST: onCreateLoader called");
             // Create a new loader for the given URL
+            Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
             return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
         }
 
         @Override
         public void onLoadFinished(android.content.Loader<List<DVArticles>> loader, List<DVArticles> dvArticles) {
             indeterminate_bar.setVisibility(View.GONE);
-            emptyState.setText(R.string.no_dvarticles);
+            emptyState.setText(R.string.no_articles);
             // Clear the adapter of previous DV article data
             Log.i(LOG_TAG, "TEST: onLoadFinished clears mAdapter");
             mAdapter.clear();
