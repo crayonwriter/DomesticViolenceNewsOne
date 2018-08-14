@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             // If there is a valid list of {@link DVarticles}, then add them to the adapter's
             // data set. This will trigger the ListView to update.
             if (dvArticles != null && !dvArticles.isEmpty()) {
-                //mAdapter.addAll(dvArticles);
+                mAdapter.addAll(dvArticles);
             }
 
 
