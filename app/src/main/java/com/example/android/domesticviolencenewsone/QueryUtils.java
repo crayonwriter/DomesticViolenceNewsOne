@@ -144,7 +144,7 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding articles to
         List<DVArticles> dvArticleList = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
@@ -168,39 +168,52 @@ public final class QueryUtils {
 
                 // For a given article, extract the JSONObject associated with the
                 // JSONarray called "results", which represents a list of all results
-                // for that earthquake.
+                // for that article.
 
-                // Extract the values for the keys called "sectionName" and "webUrl" and "Fields"
+                // Extract the values for the keys called "sectionName" and "webUrl"
                 String section = currentDVArticle.getString("sectionName");
                 String url = currentDVArticle.getString("webUrl");
+                String date = currentDVArticle.getString("webPublicationDate");
 
-                JSONObject fields = currentDVArticle.getJSONObject("fields");
+                //Extract the tags array
+                JSONArray dvArticlesTagsArray = currentDVArticle.getJSONArray("tags");
+                String byline;
 
-                // From the fields JSONobject, extract the value for the keys called "headline", "byline", "firstPublicationDate", and "body"
-                String headline = fields.getString("headline");
+                if (dvArticlesTagsArray != null) {
+                    JSONObject tagsObject = dvArticlesTagsArray.getJSONObject(0);
+                    //Extract the name of the author of the news report:
+                    if (tagsObject != null) {
+                        byline = tagsObject.getString("webTitle");
+                    } else {
+                        byline = "Unknown";
+                    }
 
-                String byline = fields.getString("byline");
+                    //Extract the fields object
+                    JSONObject fields = currentDVArticle.getJSONObject("fields");
+                    if (fields != null) {
+                        // From the fields JSONobject, extract the value for the keys called "headline" and "body"
+                        String headline = fields.getString("headline");
 
-                String date = fields.getString("firstPublicationDate");
+                        String body = fields.getString("body");
 
-                String body = fields.getString("body");
 
-                // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
-                DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body);
+                        // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
+                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body);
 
-                // Add the new {@link DVArticles} to the list of dvarticles.
-                dvArticleList.add(dvArticles);
+                        // Add the new {@link DVArticles} to the list of dvarticles.
+                        dvArticleList.add(dvArticles);
+                    }
+                }
             }
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the article JSON results", e);
         }
 
         // Return the list of dvarticles
         return dvArticleList;
     }
-
 }
