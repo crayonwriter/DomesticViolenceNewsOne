@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private ProgressBar indeterminate_bar;
 
-    /** Adapter for the list of earthquakes */
+    /**
+     * Adapter for the list of earthquakes
+     */
     private DVArticlesAdapter mAdapter;
 
     @Override
@@ -103,36 +107,53 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
     }
 
-        @Override
-        public android.content.Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle){
-            Log.i(LOG_TAG, "TEST: onCreateLoader called");
-            // Create a new loader for the given URL
-            Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
-            return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
-        }
+    @Override
+    public android.content.Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle) {
+        Log.i(LOG_TAG, "TEST: onCreateLoader called");
+        // Create a new loader for the given URL
+        Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
+        return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
+    }
 
-        @Override
-        public void onLoadFinished(android.content.Loader<List<DVArticles>> loader, List<DVArticles> dvArticles) {
-            indeterminate_bar.setVisibility(View.GONE);
-            emptyState.setText(R.string.no_articles);
-            // Clear the adapter of previous DV article data
-            Log.i(LOG_TAG, "TEST: onLoadFinished clears mAdapter");
-            mAdapter.clear();
+    @Override
+    public void onLoadFinished(android.content.Loader<List<DVArticles>> loader, List<DVArticles> dvArticles) {
+        indeterminate_bar.setVisibility(View.GONE);
+        emptyState.setText(R.string.no_articles);
+        // Clear the adapter of previous DV article data
+        Log.i(LOG_TAG, "TEST: onLoadFinished clears mAdapter");
+        mAdapter.clear();
 
-            // If there is a valid list of {@link DVarticles}, then add them to the adapter's
-            // data set. This will trigger the ListView to update.
-            if (dvArticles != null && !dvArticles.isEmpty()) {
-                mAdapter.addAll(dvArticles);
-            }
-
-
-        }
-
-        @Override
-        public void onLoaderReset(android.content.Loader<List<DVArticles>> loader) {
-// Loader reset, so we can clear out our existing data.
-            Log.i(LOG_TAG, "TEST: onLoaderReset");
-            mAdapter.clear();
+        // If there is a valid list of {@link DVarticles}, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (dvArticles != null && !dvArticles.isEmpty()) {
+            mAdapter.addAll(dvArticles);
         }
     }
+
+    @Override
+    public void onLoaderReset(android.content.Loader<List<DVArticles>> loader) {
+        // Loader reset, so we can clear out our existing data.
+        Log.i(LOG_TAG, "TEST: onLoaderReset");
+        mAdapter.clear();
+    }
+
+    @Override
+    // This method initializes the contents of the Activity's options menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    // This method is called whenever an item in the options menu is selected.
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
 
