@@ -11,7 +11,7 @@
         <!--android:title="Order By" />-->
 
     <EditTextPreference
-        android:defaultValue="@string/Settings_min_words_default"
+        android:defaultValue="@string/settings_min_words_default"
         android:inputType="numberDecimal"
         android:key="@string/settings_min_words_key"
         android:selectAllOnFocus="true"
