@@ -194,7 +194,7 @@ public final class QueryUtils {
                         // From the fields JSONobject, extract the value for the keys called "headline" and "body"
                         String headline = fields.getString("headline");
 
-                        String body = fields.getString("body");
+                        String body = fields.getString("bodyText");
 
 
                         // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
