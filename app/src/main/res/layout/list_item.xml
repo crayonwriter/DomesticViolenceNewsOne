@@ -88,5 +88,13 @@
             android:textSize="12sp"
             tools:text="Society" />
 
+        <TextView
+            android:id="@+id/wordcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="12sp"
+            tools:text="# of words: 400"/>
+
     </LinearLayout>
 </LinearLayout>

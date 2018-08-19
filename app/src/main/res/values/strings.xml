@@ -12,4 +12,5 @@
     <string name="settings_min_words_key">Minimum Word Count</string>
     <string name="Settings_min_words_default" translatable="false">100</string>
 
+    <string name="wordcount"># of words: </string>
 </resources>

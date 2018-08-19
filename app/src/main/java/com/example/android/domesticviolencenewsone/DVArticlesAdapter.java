@@ -55,6 +55,9 @@ public class DVArticlesAdapter extends ArrayAdapter<DVArticles> {
         TextView bodyView = listItemView.findViewById(R.id.body);
         bodyView.setText(currentDVArticles.getBody());
 
+        TextView wordcountView = listItemView.findViewById(R.id.wordcount);
+        wordcountView.setText(currentDVArticles.getWordcount());
+
         // Return the list item view that is now showing the appropriate data
         return listItemView;
     }

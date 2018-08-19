@@ -196,9 +196,11 @@ public final class QueryUtils {
 
                         String body = fields.getString("bodyText");
 
+                        String wordcount = fields.getString("wordcount");
+
 
                         // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
-                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body);
+                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body, wordcount);
 
                         // Add the new {@link DVArticles} to the list of dvarticles.
                         dvArticleList.add(dvArticles);

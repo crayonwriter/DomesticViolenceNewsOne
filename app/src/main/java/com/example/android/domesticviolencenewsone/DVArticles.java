@@ -20,6 +20,7 @@ public class DVArticles {
         private String mByline;
         private String mDate;
         private String mBody;
+        private String mWordcount;
 
     /**Constructor for the class
      * @param section is the category of article in the Guardian site
@@ -28,16 +29,18 @@ public class DVArticles {
      * @param byline is the article author's name
      * @param date is the first publication date of the article
      * @param body is the bodytext of the article
+     * @param wordcount is the number of words in the article
      */
 
 
-public DVArticles(String section, String url, String headline, String byline, String date, String body) {
+public DVArticles(String section, String url, String headline, String byline, String date, String body, String wordcount) {
     mSection = section;
     mUrl = url;
     mHeadline = headline;
     mByline = byline;
     mDate = date;
     mBody = body;
+    mWordcount = wordcount;
 }
 
 //Declare the methods to get each state
@@ -64,5 +67,7 @@ public DVArticles(String section, String url, String headline, String byline, St
         public String getBody() {
         return mBody;
         }
+
+        public String getWordcount() {return "# of words: " + mWordcount;}
     }
 

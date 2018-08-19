@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int DVARTICLES_LOADER_ID = 1;
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=byline%2CbodyText%2Cheadline&show-tags=contributor&q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
+    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=all%2CbodyText%2Cheadline&show-tags=contributor&q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
 
     private TextView emptyState;
 
