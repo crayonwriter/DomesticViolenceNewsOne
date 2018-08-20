@@ -3,9 +3,12 @@ package com.example.android.domesticviolencenewsone;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int DVARTICLES_LOADER_ID = 1;
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=all&show-tags=contributor&q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
+    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
 
     private TextView emptyState;
 
@@ -108,11 +111,31 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public android.content.Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle) {
-        Log.i(LOG_TAG, "TEST: onCreateLoader called");
-        // Create a new loader for the given URL
-        Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
-        return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
+    // onCreateLoader instantiates and returns a new Loader for the given ID
+    public Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String wordcount = sharedPrefs.getString(
+                getString(R.string.settings_min_words_key),
+                getString(R.string.settings_min_words_default));
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=json`
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("pageSize", "20");
+        uriBuilder.appendQueryParameter("show-fields", wordcount);
+        uriBuilder.appendQueryParameter("orderby", "newest");
+
+        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        return new DVArticleLoader(this, uriBuilder.toString());
+
     }
 
     @Override

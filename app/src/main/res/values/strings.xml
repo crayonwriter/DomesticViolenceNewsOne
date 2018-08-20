@@ -1,16 +1,24 @@
 <resources>
     <string name="app_name">DomesticViolenceNewsOne</string>
+
     <string name="read_more">Click here to read entire article</string>
+
     <string name="no_internet">No Internet connection!!</string>
+
     <string name="no_articles">No articles found!!</string>
 
+    <!-- Settings Menu Item [CHAR LIMIT=NONE] -->
     <string name="settings_menu_item">Settings</string>
+
+    <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
     <string name="settings_title">Article Settings</string>
 
-    <!--Minimum word count label and key -->
+    <!-- Strings For Minimum Words Preference [CHAR LIMIT=30] -->
     <string name="settings_min_words_label">Minimum # of Words</string>
-    <string name="settings_min_words_key">Minimum Word Count</string>
-    <string name="settings_min_words_default">100</string>
+    <string name="settings_min_words_key" translatable="false">wordcount</string>
+    <string name="settings_min_words_default" translatable="false">100</string>
 
-    <string name="wordcount"># of words: </string>
+
+
+
 </resources>
