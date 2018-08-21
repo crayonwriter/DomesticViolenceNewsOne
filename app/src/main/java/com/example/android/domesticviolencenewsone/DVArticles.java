@@ -68,8 +68,9 @@ public class DVArticles {
         return mBody;
         }
 
-    public int getWordcount() {
-        return mWordcount;
+    public String getWordcount() {
+        return "# of words: " + mWordcount;
     }
+
     }
 

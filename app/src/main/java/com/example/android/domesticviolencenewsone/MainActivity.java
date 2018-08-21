@@ -134,9 +134,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("show-fields", wordcount);
-        uriBuilder.appendQueryParameter("show-fields", "wordcount&headline&bodyText");
+        uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
-        uriBuilder.appendQueryParameter("q", "domestic&violence");
+        uriBuilder.appendQueryParameter("q", "domestic violence");
         uriBuilder.appendQueryParameter("api-key", "3588df55-9efc-4677-96bc-fecca45a6851");
 
 
