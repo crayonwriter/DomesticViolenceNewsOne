@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int DVARTICLES_LOADER_ID = 1;
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?show-fields=wordcount%2Cbyline%2CbodyText%2Cheadline&show-tags=contributor&q=domestic%20violence&api-key=3588df55-9efc-4677-96bc-fecca45a6851";
+    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search";
 
     private TextView emptyState;
 
@@ -119,11 +119,30 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String minMagnitude = sharedPrefs.getString(
+        String wordcount = sharedPrefs.getString(
                 getString(R.string.settings_min_words_key),
                 getString(R.string.settings_min_words_default));
 
-        return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("show-fields", wordcount);
+        uriBuilder.appendQueryParameter("show-fields", "wordcount&headline&bodyText");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("q", "domestic&violence");
+        uriBuilder.appendQueryParameter("api-key", "3588df55-9efc-4677-96bc-fecca45a6851");
+
+
+        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        return new DVArticleLoader(this, uriBuilder.toString());
+
     }
 
     @Override
