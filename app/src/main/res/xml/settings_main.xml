@@ -12,7 +12,7 @@
 
     <EditTextPreference
         android:defaultValue="@string/settings_min_words_default"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:key="@string/settings_min_words_key"
         android:selectAllOnFocus="true"
         android:title="@string/settings_min_words_label" />

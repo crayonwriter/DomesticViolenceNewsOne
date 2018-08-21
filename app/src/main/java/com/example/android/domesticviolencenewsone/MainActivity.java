@@ -3,9 +3,11 @@ package com.example.android.domesticviolencenewsone;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,10 +110,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
+    // onCreateLoader instantiates and returns a new Loader for the given ID
     public android.content.Loader<List<DVArticles>> onCreateLoader(int i, Bundle bundle) {
         Log.i(LOG_TAG, "TEST: onCreateLoader called");
         // Create a new loader for the given URL
         Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String minMagnitude = sharedPrefs.getString(
+                getString(R.string.settings_min_words_key),
+                getString(R.string.settings_min_words_default));
+
         return new DVArticleLoader(this, GUARDIAN_REQUEST_URL);
     }
 

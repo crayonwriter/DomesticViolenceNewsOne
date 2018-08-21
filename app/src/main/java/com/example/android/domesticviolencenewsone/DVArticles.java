@@ -20,7 +20,7 @@ public class DVArticles {
         private String mByline;
         private String mDate;
         private String mBody;
-        private String mWordcount;
+    private int mWordcount;
 
     /**Constructor for the class
      * @param section is the category of article in the Guardian site
@@ -33,7 +33,7 @@ public class DVArticles {
      */
 
 
-public DVArticles(String section, String url, String headline, String byline, String date, String body, String wordcount) {
+    public DVArticles(String section, String url, String headline, String byline, String date, String body, int wordcount) {
     mSection = section;
     mUrl = url;
     mHeadline = headline;
