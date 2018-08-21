@@ -119,9 +119,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String wordcount = sharedPrefs.getString(
-                getString(R.string.settings_min_words_key),
-                getString(R.string.settings_min_words_default));
+        int wordcount = sharedPrefs.getInt("R.settings.min_words.key", 100);
 
 
         // parse breaks apart the URI string that's passed into its parameter
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Append query parameter and its value. For example, the `format=geojson`
 
         uriBuilder.appendQueryParameter("format", "json");
-        uriBuilder.appendQueryParameter("show-fields", wordcount);
+        uriBuilder.appendQueryParameter("show-fields", String.valueOf(wordcount));
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("q", "domestic violence");
