@@ -175,6 +175,9 @@ public final class QueryUtils {
                 String url = currentDVArticle.getString("webUrl");
                 String date = currentDVArticle.getString("webPublicationDate");
                 String pageSize = currentDVArticle.getString("pageSize");
+                if (currentDVArticle.has("pageSize")) {
+                    pageSize = currentDVArticle.getString("pageSize");
+                }
 
                 //Extract the tags array
                 JSONArray dvArticlesTagsArray = currentDVArticle.getJSONArray("tags");

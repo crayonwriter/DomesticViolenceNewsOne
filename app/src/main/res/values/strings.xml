@@ -13,23 +13,17 @@
     <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
     <string name="settings_title">Article Settings</string>
 
-    <!-- Strings For Minimum Words Preference [CHAR LIMIT=30] -->
-    <string name="settings_min_words_label">Minimum # of Words</string>
-    <string name="settings_min_words_key" translatable="false">wordcount</string>
-    <string name="settings_min_words_default" translatable="false">100</string>
-
     <!--Strings for page size preference -->
     <string name="settings_page_size_label"># of articles</string>
     <string name="settings_page_size_key" translatable="false">pageSize</string>
     <string name="settings_page_size_default" translatable="false">5</string>
-
 
     <!--Strings for SECTION preference -->
     <string name="settings_section_label">Section(s)</string>
     <string name="settings_section_key" translatable="false">sectionId</string>
     <string name="settings_section_default" translatable="false">@string/settings_opinion_value</string>
 
-    <!-- Strings For Opinion Preference [CHAR LIMIT=30] -->
+    <!-- Strings For Opinion option [CHAR LIMIT=30] -->
     <string name="settings_opinion_label">Opinion</string>
     <string name="settings_opinion_value" translatable="false">commentisfree</string>
 

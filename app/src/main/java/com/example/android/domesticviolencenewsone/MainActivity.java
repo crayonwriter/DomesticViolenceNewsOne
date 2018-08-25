@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String pageSize = sharedPrefs.getString(
+
                 getString(R.string.settings_page_size_key),
                 getString(R.string.settings_page_size_default));
         ;
@@ -174,7 +175,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Loader reset, so we can clear out our existing data.
         Log.i(LOG_TAG, "TEST: onLoaderReset");
         mAdapter.clear();
+
     }
+
 
     @Override
     // This method initializes the contents of the Activity's options menu

@@ -11,11 +11,11 @@
         android:title="@string/settings_section_label" />
 
     <EditTextPreference
-        android:defaultValue="@string/settings_min_words_default"
+        android:defaultValue="@string/settings_page_size_default"
         android:inputType="number"
-        android:key="@string/settings_min_words_key"
+        android:key="@string/settings_page_size_key"
         android:selectAllOnFocus="true"
         android:singleLine="false"
-        android:title="@string/settings_min_words_label" />
+        android:title="@string/settings_page_size_label" />
 
 </PreferenceScreen>
