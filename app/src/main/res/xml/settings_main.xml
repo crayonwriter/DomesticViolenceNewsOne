@@ -3,18 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title">
 
-    <!--<ListPreference-->
-        <!--android:defaultValue="@string/settings_order_by_default"-->
-        <!--android:entries="@array/settings_order_by_labels"-->
-        <!--android:entryValues="@array/settings_order_by_values"-->
-        <!--android:key="@string/settings_order_by_key"-->
-        <!--android:title="Order By" />-->
+    <MultiSelectListPreference
+        android:defaultValue="@string/settings_section_default"
+        android:entries="@array/settings_section_labels"
+        android:entryValues="@array/settings_section_values"
+        android:key="@string/settings_section_key"
+        android:title="@string/settings_section_label" />
 
     <EditTextPreference
         android:defaultValue="@string/settings_min_words_default"
         android:inputType="number"
         android:key="@string/settings_min_words_key"
         android:selectAllOnFocus="true"
+        android:singleLine="false"
         android:title="@string/settings_min_words_label" />
 
 </PreferenceScreen>

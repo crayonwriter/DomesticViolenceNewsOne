@@ -20,6 +20,7 @@ public class DVArticles {
         private String mByline;
         private String mDate;
         private String mBody;
+    private String mPageSize;
     private int mWordcount;
 
     /**Constructor for the class
@@ -29,17 +30,19 @@ public class DVArticles {
      * @param byline is the article author's name
      * @param date is the first publication date of the article
      * @param body is the bodytext of the article
+     *             @param pageSize is the number of pages to show onscreen
      * @param wordcount is the number of words in the article
      */
 
 
-    public DVArticles(String section, String url, String headline, String byline, String date, String body, int wordcount) {
+    public DVArticles(String section, String url, String headline, String byline, String date, String body, String pageSize, int wordcount) {
     mSection = section;
     mUrl = url;
     mHeadline = headline;
     mByline = byline;
     mDate = date;
     mBody = body;
+        mPageSize = pageSize;
     mWordcount = wordcount;
 }
 
@@ -72,5 +75,8 @@ public class DVArticles {
         return "# of words: " + mWordcount;
     }
 
+    public String getPageSize() {
+        return mPageSize;
+    }
     }
 

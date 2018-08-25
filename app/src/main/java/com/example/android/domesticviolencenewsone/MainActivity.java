@@ -116,11 +116,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Create a new loader for the given URL
         Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        int wordcount = sharedPrefs.getInt("R.settings.min_words.key", 100);
-
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
@@ -128,13 +123,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String pageSize = sharedPrefs.getString(
+                getString(R.string.settings_page_size_key),
+                getString(R.string.settings_page_size_default));
+        ;
+
+        String sectionId = sharedPrefs.getString(
+                getString(R.string.settings_section_key),
+                getString(R.string.settings_section_default)
+        );
+
         // Append query parameter and its value. For example, the `format=geojson`
 
         uriBuilder.appendQueryParameter("format", "json");
-        uriBuilder.appendQueryParameter("show-fields", String.valueOf(wordcount));
+        uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
+        uriBuilder.appendQueryParameter("sectionId", sectionId);
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("q", "domestic violence");
+
         uriBuilder.appendQueryParameter("api-key", "3588df55-9efc-4677-96bc-fecca45a6851");
 
 

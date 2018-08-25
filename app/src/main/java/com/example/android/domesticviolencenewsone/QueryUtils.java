@@ -174,6 +174,7 @@ public final class QueryUtils {
                 String section = currentDVArticle.getString("sectionName");
                 String url = currentDVArticle.getString("webUrl");
                 String date = currentDVArticle.getString("webPublicationDate");
+                String pageSize = currentDVArticle.getString("pageSize");
 
                 //Extract the tags array
                 JSONArray dvArticlesTagsArray = currentDVArticle.getJSONArray("tags");
@@ -200,7 +201,7 @@ public final class QueryUtils {
 
 
                         // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
-                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body, wordcount);
+                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body, pageSize, wordcount);
 
                         // Add the new {@link DVArticles} to the list of dvarticles.
                         dvArticleList.add(dvArticles);
