@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<DVArticles>> {
 
@@ -133,16 +134,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_page_size_default));
         ;
 
-        String sectionId = sharedPrefs.getString(
-                getString(R.string.settings_section_key),
-                getString(R.string.settings_section_default)
-        );
+//        String sectionId = sharedPrefs.getString(
+//                getString(R.string.settings_section_key),
+//                getString(R.string.settings_section_default)
+//        );
+
+        Set<String> sectionId = sharedPrefs.getStringSet(
+                getString(R.string.settings_section_key), null);
 
         // Append query parameter and its value. For example, the `format=geojson`
 
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
-        uriBuilder.appendQueryParameter("sectionId", sectionId);
+        uriBuilder.appendQueryParameter("sectionId", String.valueOf(sectionId));
         uriBuilder.appendQueryParameter("sectionName", "sectionName");
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
