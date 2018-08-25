@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
-        uriBuilder.appendQueryParameter("section", sectionId);
+        uriBuilder.appendQueryParameter("sectionId", sectionId);
         uriBuilder.appendQueryParameter("sectionName", "sectionName");
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
