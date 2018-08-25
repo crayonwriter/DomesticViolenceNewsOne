@@ -15,6 +15,7 @@ public class DVArticles {
 
         //Instantiate the states
         private String mSection;
+    private String mSectionId;
         private String mUrl;
         private String mHeadline;
         private String mByline;
@@ -24,7 +25,8 @@ public class DVArticles {
     private int mWordcount;
 
     /**Constructor for the class
-     * @param section is the category of article in the Guardian site
+     * @param section is the category name of article in the Guardian site
+     *                @param sectionId is the category id of the article in the Guardian site
      * @param url is the URL of the article on the Web
      * @param headline is the headline of the article
      * @param byline is the article author's name
@@ -35,8 +37,9 @@ public class DVArticles {
      */
 
 
-    public DVArticles(String section, String url, String headline, String byline, String date, String body, String pageSize, int wordcount) {
+    public DVArticles(String section, String sectionId, String url, String headline, String byline, String date, String body, String pageSize, int wordcount) {
     mSection = section;
+        mSectionId = sectionId;
     mUrl = url;
     mHeadline = headline;
     mByline = byline;
@@ -50,6 +53,10 @@ public class DVArticles {
         public String getSection() {
             return mSection;
         }
+
+    public String getSectionId() {
+        return mSectionId;
+    }
 
         public String getUrl() {
         return mUrl;

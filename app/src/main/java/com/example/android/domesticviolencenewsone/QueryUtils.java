@@ -159,7 +159,9 @@ public final class QueryUtils {
             // Extract the JSONArray associated with the key called "results",
             // which represents a list of articles (or dv articles).
             JSONArray dvArticlesArray = baseJsonResponse.getJSONObject("response").getJSONArray("results");
+            JSONObject dvArticlesResponse = baseJsonResponse.getJSONObject("response");
 
+            String pageSize = dvArticlesResponse.getString("pageSize");
             // For each dv article in the dvArticlesArray, create an {@link DVArticles} object
             for (int i = 0; i < dvArticlesArray.length(); i++) {
 
@@ -170,11 +172,12 @@ public final class QueryUtils {
                 // JSONarray called "results", which represents a list of all results
                 // for that article.
 
-                // Extract the values for the keys called "sectionName" and "webUrl"
+                // Extract the values for the keys
                 String section = currentDVArticle.getString("sectionName");
+                String sectionId = currentDVArticle.getString("sectionId");
                 String url = currentDVArticle.getString("webUrl");
                 String date = currentDVArticle.getString("webPublicationDate");
-                String pageSize = currentDVArticle.getString("pageSize");
+
                 if (currentDVArticle.has("pageSize")) {
                     pageSize = currentDVArticle.getString("pageSize");
                 }
@@ -203,8 +206,8 @@ public final class QueryUtils {
                         int wordcount = fields.getInt("wordcount");
 
 
-                        // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate                // and url from the JSON response.
-                        DVArticles dvArticles = new DVArticles(section, url, headline, byline, date, body, pageSize, wordcount);
+                        // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate // and url from the JSON response.
+                        DVArticles dvArticles = new DVArticles(section, sectionId, url, headline, byline, date, body, pageSize, wordcount);
 
                         // Add the new {@link DVArticles} to the list of dvarticles.
                         dvArticleList.add(dvArticles);
