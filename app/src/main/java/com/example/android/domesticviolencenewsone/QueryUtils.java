@@ -23,7 +23,9 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /*
@@ -152,7 +154,6 @@ public final class QueryUtils {
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
 
         try {
-
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(dvArticlesJSON);
 
@@ -206,7 +207,7 @@ public final class QueryUtils {
                         int wordcount = fields.getInt("wordcount");
 
 
-                        // Create a new {@link DVArticles} object with the section, url, headline, byline, and firstPublicationDate // and url from the JSON response.
+                        // Create a new {@link DVArticles} object
                         DVArticles dvArticles = new DVArticles(section, sectionId, url, headline, byline, date, body, pageSize, wordcount);
 
                         // Add the new {@link DVArticles} to the list of dvarticles.

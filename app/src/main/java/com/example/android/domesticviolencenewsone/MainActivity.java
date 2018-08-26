@@ -26,9 +26,8 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<DVArticles>> {
 
-    private static final int DVARTICLES_LOADER_ID = 1;
-
     public static final String LOG_TAG = MainActivity.class.getName();
+    private static final int DVARTICLES_LOADER_ID = 1;
     private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search";
 
     private TextView emptyState;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private ProgressBar indeterminate_bar;
 
     /**
-     * Adapter for the list of earthquakes
+     * Adapter for the list of articles
      */
     private DVArticlesAdapter mAdapter;
 
@@ -59,9 +58,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // so the list can be populated in the user interface
         dvArticlesListView.setAdapter(mAdapter);
 
-// Get a reference to the ConnectivityManager to check state of network connectivity
+        // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
+
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Create a new loader for the given URL
         Log.i(LOG_TAG, "Guardian request: " + GUARDIAN_REQUEST_URL);
 
-
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
 
@@ -134,15 +133,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_page_size_default));
         ;
 
-//        String sectionId = sharedPrefs.getString(
-//                getString(R.string.settings_section_key),
-//                getString(R.string.settings_section_default)
-//        );
-
         Set<String> sectionId = sharedPrefs.getStringSet(
                 getString(R.string.settings_section_key), null);
 
-        // Append query parameter and its value. For example, the `format=geojson`
+        // Append query parameter and its value. For example, the `format=json`
 
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
@@ -155,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         uriBuilder.appendQueryParameter("api-key", "3588df55-9efc-4677-96bc-fecca45a6851");
 
 
-        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        // Return the completed uri, for example `https://content.guardianapis.com/search?format=json&pageSize=5&sectionId=world&sectionName=World&show-fields=wordcount,headline,bodyText&show-tags=contributer&q=domestic violence'
         return new DVArticleLoader(this, uriBuilder.toString());
 
     }
@@ -164,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(android.content.Loader<List<DVArticles>> loader, List<DVArticles> dvArticles) {
         indeterminate_bar.setVisibility(View.GONE);
         emptyState.setText(R.string.no_articles);
+
         // Clear the adapter of previous DV article data
         Log.i(LOG_TAG, "TEST: onLoadFinished clears mAdapter");
         mAdapter.clear();
@@ -177,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoaderReset(android.content.Loader<List<DVArticles>> loader) {
+
         // Loader reset, so we can clear out our existing data.
         Log.i(LOG_TAG, "TEST: onLoaderReset");
         mAdapter.clear();

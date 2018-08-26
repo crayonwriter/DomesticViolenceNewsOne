@@ -11,8 +11,6 @@
     android:paddingRight="16dp"
     android:paddingStart="16dp">
 
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,23 +43,20 @@
             android:id="@+id/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
             android:textSize="12sp"
-            tools:text="Text of article, allowed to be up to two lines with ellipses at the end."
-            android:ellipsize="end"
-            />
+            tools:text="Text of article, allowed to be up to two lines with ellipses at the end." />
 
         <TextView
             android:id="@+id/url"
-            android:text="@string/read_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="12sp"
-            tools:text="More"
             android:ellipsize="end"
-            />
-
+            android:maxLines="1"
+            android:text="@string/read_more"
+            android:textSize="12sp"
+            tools:text="More" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +89,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:textSize="12sp"
-            tools:text="# of words: 400"/>
-
+            tools:text="# of words: 400" />
     </LinearLayout>
 </LinearLayout>

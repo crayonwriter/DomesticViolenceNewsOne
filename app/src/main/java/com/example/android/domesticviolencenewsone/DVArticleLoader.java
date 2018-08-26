@@ -11,17 +11,21 @@ import java.util.List;
 
 public class DVArticleLoader extends AsyncTaskLoader<List<DVArticles>> {
 
-    /** Tag for log messages */
+    /**
+     * Tag for log messages
+     */
     private static final String LOG_TAG = DVArticleLoader.class.getName();
 
-    /** Query URL */
+    /**
+     * Query URL
+     */
     private String mUrl;
 
     /**
      * Constructs a new {@link DVArticleLoader}.
      *
      * @param context of the activity
-     * @param url to load data from
+     * @param url     to load data from
      */
     public DVArticleLoader(Context context, String url) {
         super(context);
@@ -41,6 +45,6 @@ public class DVArticleLoader extends AsyncTaskLoader<List<DVArticles>> {
             return null;
         }
         List<DVArticles> dvArticlesList = QueryUtils.fetchDVArticlesData(mUrl);
-        return  dvArticlesList;
+        return dvArticlesList;
     }
 }
