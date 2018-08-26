@@ -21,7 +21,7 @@
     <!--Strings for SECTION preference -->
     <string name="settings_section_label">Section(s)</string>
     <string name="settings_section_key" translatable="false">sectionId</string>
-    <string name="settings_section_default" translatable="false">settings_opinion_value</string>
+    <string name="settings_section_default" translatable="false">string/settings_opinion_value</string>
 
     <!-- Strings For OPINION Option [CHAR LIMIT=30] -->
     <string name="settings_opinion_label">Opinion</string>
@@ -34,5 +34,9 @@
     <!-- Label for LIFE AND STYLE Option [CHAR LIMIT=20] -->
     <string name="settings_life_and_style_label">Life and Style</string>
     <string name="settings_life_and_style_value" translatable="false">lifeandstyle</string>
+
+    <!--Other strings -->
+    <string name="unknown">Unknown</string>
+
 
 </resources>

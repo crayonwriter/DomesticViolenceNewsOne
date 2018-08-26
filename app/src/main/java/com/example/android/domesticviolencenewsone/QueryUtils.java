@@ -137,7 +137,7 @@ public final class QueryUtils {
     }
 
     /**
-     * Return a list of {@link DVArticles} objects that has been built up from
+     * Return a list of {@link DVArticles} objects that have been built up from
      * parsing the given JSON response.
      */
     private static List<DVArticles> extractFeatureFromJson(String dvArticlesJSON) {
@@ -187,13 +187,13 @@ public final class QueryUtils {
                 JSONArray dvArticlesTagsArray = currentDVArticle.getJSONArray("tags");
                 String byline;
 
-                if (dvArticlesTagsArray != null) {
+                if (dvArticlesTagsArray.length() > 0) {
                     JSONObject tagsObject = dvArticlesTagsArray.getJSONObject(0);
                     //Extract the name of the author of the news report:
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = "Unknown";
+                        byline = tagsObject.getString("R.string.unknown");
                     }
 
                     //Extract the fields object
