@@ -1,5 +1,6 @@
 package com.example.android.domesticviolencenewsone;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,7 +23,13 @@ import java.util.List;
 /**
  * Helper methods related to requesting and receiving domestic violence article data from the Guardian API.
  */
+
+
 public final class QueryUtils {
+    Context myContext;
+    public QueryUtils (Context context) {
+        myContext = context;
+    }
 
     /**
      * Tag for the log messages
@@ -35,7 +42,7 @@ public final class QueryUtils {
      * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
      */
     private QueryUtils() {
-    }
+            }
 
     /**
      * Query the Guardian API dataset and return a list of {@link DVArticles} objects.
@@ -194,8 +201,8 @@ public final class QueryUtils {
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = Resources.getSystem().getString(R.string.unknown);                    }
-
+                        byline = myContext.getString(R.string.unknown);
+                    }
                     //Extract the fields object
                     JSONObject fields = currentDVArticle.getJSONObject("fields");
                     if (fields != null) {
