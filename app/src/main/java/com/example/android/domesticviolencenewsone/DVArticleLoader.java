@@ -26,10 +26,14 @@ public class DVArticleLoader extends AsyncTaskLoader<List<DVArticles>> {
      *
      * @param context of the activity
      * @param url     to load data from
+     *                @param
      */
+
+    private Context mContext;
     public DVArticleLoader(Context context, String url) {
         super(context);
         mUrl = url;
+        mContext = context;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class DVArticleLoader extends AsyncTaskLoader<List<DVArticles>> {
         if (mUrl == null) {
             return null;
         }
-        List<DVArticles> dvArticlesList = QueryUtils.fetchDVArticlesData(mUrl);
+        List<DVArticles> dvArticlesList = QueryUtils.fetchDVArticlesData(mContext, mUrl);
         return dvArticlesList;
     }
 }
