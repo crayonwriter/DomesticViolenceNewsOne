@@ -27,6 +27,8 @@ import java.util.List;
 
 public final class QueryUtils {
     Context myContext;
+    private static Resources context;
+
     public QueryUtils (Context context) {
         myContext = context;
     }
@@ -201,7 +203,7 @@ public final class QueryUtils {
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = Context.getString(R.string.unknown);
+                        byline = getContext().getString(R.string.unknown);
                     }
                     //Extract the fields object
                     JSONObject fields = currentDVArticle.getJSONObject("fields");
@@ -232,5 +234,9 @@ public final class QueryUtils {
 
         // Return the list of dvarticles
         return dvArticleList;
+    }
+
+    public static Resources getContext() {
+        return context;
     }
 }
