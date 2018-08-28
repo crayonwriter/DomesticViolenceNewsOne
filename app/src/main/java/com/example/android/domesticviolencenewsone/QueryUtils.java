@@ -1,5 +1,6 @@
 package com.example.android.domesticviolencenewsone;
 
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -193,8 +194,7 @@ public final class QueryUtils {
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = tagsObject.getString("unknown");
-                    }
+                        byline = Resources.getSystem().getString(R.string.unknown);                    }
 
                     //Extract the fields object
                     JSONObject fields = currentDVArticle.getJSONObject("fields");
