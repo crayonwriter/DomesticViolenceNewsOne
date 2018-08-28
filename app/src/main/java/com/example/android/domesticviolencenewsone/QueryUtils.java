@@ -193,7 +193,7 @@ public final class QueryUtils {
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = tagsObject.getString("R.string.unknown");
+                        byline = tagsObject.getString("unknown");
                     }
 
                     //Extract the fields object
