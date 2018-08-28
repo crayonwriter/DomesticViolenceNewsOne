@@ -49,7 +49,7 @@ public final class QueryUtils {
     /**
      * Query the Guardian API dataset and return a list of {@link DVArticles} objects.
      */
-    public static List<DVArticles> fetchDVArticlesData(String requestUrl) {
+    public static List<DVArticles> fetchDVArticlesData(Context context, String requestUrl) {
         Log.i(LOG_TAG, "TEST: QueryUtils.fetchDVArticlesData' called");
         try {
             Thread.sleep(2000);
@@ -68,7 +68,7 @@ public final class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link DVArticles}
-        List<DVArticles> dvArticles = extractFeatureFromJson(jsonResponse);
+        List<DVArticles> dvArticles = extractFeatureFromJson(context, jsonResponse);
 
         // Return the list of {@link DVArticles}s
         return dvArticles;
@@ -150,7 +150,7 @@ public final class QueryUtils {
      * Return a list of {@link DVArticles} objects that have been built up from
      * parsing the given JSON response.
      */
-    private static List<DVArticles> extractFeatureFromJson(String dvArticlesJSON) {
+    private static List<DVArticles> extractFeatureFromJson(Context context, String dvArticlesJSON) {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(dvArticlesJSON)) {
             return null;
@@ -203,7 +203,7 @@ public final class QueryUtils {
                     if (tagsObject != null) {
                         byline = tagsObject.getString("webTitle");
                     } else {
-                        byline = getContext().getString(R.string.unknown);
+                        byline = context.getString(R.string.unknown);
                     }
                     //Extract the fields object
                     JSONObject fields = currentDVArticle.getJSONObject("fields");
